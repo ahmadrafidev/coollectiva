@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coollectiva
 
-## Getting Started
+Coollectiva is your curated gateway to the coolest AI tools on the web. Discover, explore, and stay updated with the latest AI products designed to enhance creativity, productivity, and innovation.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Coollectiva](#coollectiva)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [How It Works](#how-it-works)
+  - [Built With](#built-with)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Coollectiva provides a central hub for exploring AI tools designed to help users unlock their full potential. Whether you're a creative, a developer, or an innovator, Coollectiva showcases the best AI tools on the web, all in one place.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- **Curated Listings**: Access a handpicked selection of AI tools that are impactful, creative, and innovative.
+- **Search & Filter**: Easily discover AI products by category, tags, or use case.
+- **Stay Updated**: Get the latest news on emerging AI products, updates, and trends in the AI industry.
+- **Product Details**: Each tool listing includes detailed descriptions, use cases, and links for direct access.
 
-To learn more about Next.js, take a look at the following resources:
+## How It Works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Browse**: Discover AI tools by exploring various categories, from creative applications to developer-focused utilities.
+2. **Explore**: View in-depth product details, including features, pricing, and user reviews, to understand how each tool can benefit your specific needs.
+3. **Stay Updated**: Subscribe to updates to keep up with the latest trends and innovations in the AI space.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Built With
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js** - A React framework for server-side rendering and static site generation.
+- **Tailwind CSS** - A utility-first CSS framework for custom designs.
