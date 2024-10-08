@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Image  from 'next/image'
+import Link from 'next/link'
 
-import { Search, Filter, Home, User } from 'lucide-react'
+import { Search, Filter, User } from 'lucide-react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -45,15 +46,20 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
+
       <nav>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Coollectiva</h1>
-          <div className="flex space-x-4">
-            <Button variant="ghost" size="icon">
-              <Home className="h-5 w-5" />
+          <Link passHref href="/">
+            <h1 className="text-4xl font-bold tracking-tight">Coollectiva</h1>
+          </Link>
+          <div className="flex space-x-4 items-center">
+            <Button variant="default">
+              <p className="font-semibold text-base">
+                Submit a Tool
+              </p>
             </Button>
             <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
+              <User className="h-6 w-6" />
             </Button>
           </div>
         </div>
@@ -64,7 +70,7 @@ export function HomePage() {
           <div className="relative flex-grow">
             <Input
               type="text"
-              placeholder="Search AI tools..."
+              placeholder="Search your favorite AI tools..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -92,7 +98,7 @@ export function HomePage() {
                 key={category}
                 value={category}
                 onClick={() => setSelectedCategory(category)}
-                className="px-4 py-2"
+                className="px-6 py-1.5 rounded-md"
               >
                 {category}
               </TabsTrigger>
