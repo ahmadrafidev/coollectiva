@@ -59,7 +59,10 @@ export function HomePage() {
       <nav>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link passHref href="/">
-            <h1 className="text-3xl font-bold tracking-tight">Coollectiva</h1>
+            <div className="flex flex-row items-center">
+              <Image alt="coollectiva icon" src="/images/cube.png" width={40} height={40}/>
+              <h1 className="text-2xl font-bold tracking-tighter mx-1">Coollectiva</h1>
+            </div>
           </Link>
           <div className="flex space-x-4 items-center">
             <Dialog>
