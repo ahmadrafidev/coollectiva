@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import Image  from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Search, Filter, User } from 'lucide-react'
+
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   DropdownMenu,
@@ -14,7 +17,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
@@ -44,11 +62,69 @@ export function HomePage() {
             <h1 className="text-3xl font-bold tracking-tight">Coollectiva</h1>
           </Link>
           <div className="flex space-x-4 items-center">
-            <Button variant="default">
-              <p className="font-semibold text-base">
-                Submit
-              </p>
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="default">
+                  <p className="font-semibold text-base">
+                    Submit
+                  </p>
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Submit AI Tool</DialogTitle>
+                  <DialogDescription>
+                    Please fill out the form below to submit a new AI tool.
+                  </DialogDescription>
+                </DialogHeader>
+                <form>
+                  <div className="space-y-4">
+
+                    <div>
+                      <Label Label htmlFor="toolName">Tool Name</Label>
+                      <Input type="text" placeholder="AI Notetakers" className="w-full" />
+                    </div>
+
+                    <div>
+                      <Label Label htmlFor="toolURL">Tool URL</Label>
+                      <Input type="url" placeholder="URL" className="w-full" />
+                    </div>
+
+                    <div>
+                      <Label Label htmlFor="toolDescription">Tool Description</Label>
+                      <Input type="text" placeholder="Automatically captures and organizes meeting notes with real-time transcription and summaries." className="w-full" />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="toolCategory">Tool Category</Label>
+                      <Select onValueChange={setSelectedCategory}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {categories.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+
+                    <div>
+                      <Label Label htmlFor="toolSocials">Tool Socials</Label>
+                      <Input type="url" placeholder="X, Github, etc" className="w-full" />
+                    </div>
+                        
+                  </div>
+                </form>
+                <DialogFooter>
+                  <Button variant="ghost">Cancel</Button>
+                  <Button type="submit">Submit</Button> 
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
             <Button variant="ghost" size="icon">
               <User className="h-6 w-6" />
             </Button>
@@ -115,8 +191,6 @@ export function HomePage() {
             </Card>
           ))}
         </div>
-
-
       </main>
     </div>
   )
