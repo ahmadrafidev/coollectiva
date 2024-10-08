@@ -84,17 +84,17 @@ export function HomePage() {
                   <div className="space-y-4">
 
                     <div>
-                      <Label Label htmlFor="toolName">Tool Name</Label>
+                      <Label htmlFor="toolName">Tool Name</Label>
                       <Input type="text" placeholder="AI Notetakers" className="w-full" />
                     </div>
 
                     <div>
-                      <Label Label htmlFor="toolURL">Tool URL</Label>
+                      <Label htmlFor="toolURL">Tool URL</Label>
                       <Input type="url" placeholder="URL" className="w-full" />
                     </div>
 
                     <div>
-                      <Label Label htmlFor="toolDescription">Tool Description</Label>
+                      <Label htmlFor="toolDescription">Tool Description</Label>
                       <Input type="text" placeholder="Automatically captures and organizes meeting notes with real-time transcription and summaries." className="w-full" />
                     </div>
 
@@ -114,9 +114,8 @@ export function HomePage() {
                       </Select>
                     </div>
 
-
                     <div>
-                      <Label Label htmlFor="toolSocials">Tool Socials</Label>
+                      <Label htmlFor="toolSocials">Tool Socials</Label>
                       <Input type="url" placeholder="X, Github, etc" className="w-full" />
                     </div>
                         
@@ -187,9 +186,11 @@ export function HomePage() {
                 <p className="mt-2">{tool.description}</p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full" as="a" href={tool.link}>
-                  Learn More
-                </Button>
+                <Link href={tool.link} passHref>
+                  <Button className="w-full" >
+                    Learn More
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
