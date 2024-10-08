@@ -1,2 +1,10 @@
 
-export const categories = ["All", "Image", "Text", "Code", "Audio", "Data"]
+export const categories = [
+  "All", 
+  "Image", 
+  "Text", 
+  "Code", 
+  "Audio", 
+  "Data",
+  "Productivity"
+]

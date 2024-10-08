@@ -45,7 +45,7 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="border-b">
+      <nav>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Coollectiva</h1>
           <div className="flex space-x-4">
