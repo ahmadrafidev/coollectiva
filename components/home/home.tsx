@@ -17,32 +17,23 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { categories } from '../../constants/categories';
-
-
-const aiTools = [
-  { id: 1, name: "AI Image Generator", price: 0.05, image: "/placeholder.svg?height=200&width=200", category: "Image" },
-  { id: 2, name: "AI Text Summarizer", price: 0.03, image: "/placeholder.svg?height=200&width=200", category: "Text" },
-  { id: 3, name: "AI Code Assistant", price: 0.08, image: "/placeholder.svg?height=200&width=200", category: "Code" },
-  { id: 4, name: "AI Voice Synthesizer", price: 0.06, image: "/placeholder.svg?height=200&width=200", category: "Audio" },
-  { id: 5, name: "AI Data Analyzer", price: 0.07, image: "/placeholder.svg?height=200&width=200", category: "Data" },
-  { id: 6, name: "AI Language Translator", price: 0.04, image: "/placeholder.svg?height=200&width=200", category: "Text" },
-]
+import { AITools } from '../../constants/tools';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState("name")
   const [selectedCategory, setSelectedCategory] = useState("All")
 
-  const filteredAndSortedTools = aiTools
+  const filteredAndSortedTools = AITools
     .filter(tool => 
       tool.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedCategory === "All" || tool.category === selectedCategory)
     )
     .sort((a, b) => {
-      if (sortOrder === "name") return a.name.localeCompare(b.name)
-      if (sortOrder === "price") return a.price - b.price
-      return 0
-    })
+      if (sortOrder === "name") return a.name.localeCompare(b.name);
+      return 0;
+    });
+  
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,12 +41,12 @@ export function HomePage() {
       <nav>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link passHref href="/">
-            <h1 className="text-4xl font-bold tracking-tight">Coollectiva</h1>
+            <h1 className="text-3xl font-bold tracking-tight">Coollectiva</h1>
           </Link>
           <div className="flex space-x-4 items-center">
             <Button variant="default">
               <p className="font-semibold text-base">
-                Submit a Tool
+                Submit
               </p>
             </Button>
             <Button variant="ghost" size="icon">
@@ -70,7 +61,7 @@ export function HomePage() {
           <div className="relative flex-grow">
             <Input
               type="text"
-              placeholder="Search your favorite AI tools..."
+              placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -86,7 +77,6 @@ export function HomePage() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem onClick={() => setSortOrder("name")}>Name</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSortOrder("price")}>Price</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -114,15 +104,19 @@ export function HomePage() {
               </CardHeader>
               <CardContent className="flex-grow">
                 <CardTitle className="text-xl mb-2">{tool.name}</CardTitle>
-                <p className="text-2xl font-bold text-primary">{tool.price} ETH</p>
                 <p className="text-sm text-muted-foreground mt-1">{tool.category}</p>
+                <p className="mt-2">{tool.description}</p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Buy Now</Button>
+                <Button className="w-full" as="a" href={tool.link}>
+                  Learn More
+                </Button>
               </CardFooter>
             </Card>
           ))}
         </div>
+
+
       </main>
     </div>
   )
