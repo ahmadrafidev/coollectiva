@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Coollectiva",
+  title: "Coollectiva - The coolest new AI tools",
   description: "A destination to find and explore cutting-edge AI tools that are transforming the future of technology",
 };
 
