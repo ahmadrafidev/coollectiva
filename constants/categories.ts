@@ -1,10 +1,17 @@
-
 export const categories = [
   "All", 
-  "Image", 
-  "Text", 
-  "Code", 
-  "Audio", 
-  "Data",
-  "Productivity"
+  "Image Generation", 
+  "Marketing & Sales", 
+  "Music", 
+  "Chat",
+  "Productivity",
+  "Developer Tools", 
+  "AI Assistant", 
+  "AI Detection", 
+  "Legal", 
+  "Website Builder", 
+  "Design", 
+  "AI Notetackers", 
+  "Finance", 
+  "Travel", 
 ]
