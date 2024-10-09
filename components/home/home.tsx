@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +35,7 @@ import {
 
 import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -51,7 +51,6 @@ export function HomePage() {
       if (sortOrder === "name") return a.name.localeCompare(b.name);
       return 0;
     });
-  
 
   return (
     <div className="min-h-screen bg-background">
@@ -150,7 +149,7 @@ export function HomePage() {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="w-full sm:w-auto">
                 <Filter className="mr-2" size={20} />
-                Sort by
+                  Sort by
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -176,24 +175,16 @@ export function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAndSortedTools.map((tool) => (
-            <Card key={tool.id} className="flex flex-col">
-              <CardHeader>
-                <Image src={tool.image} alt={tool.name} height={20} width={20} className="w-full h-48 object-cover rounded-t-lg" />
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardTitle className="text-xl mb-2">{tool.name}</CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">{tool.category}</p>
-                <p className="mt-2">{tool.description}</p>
-              </CardContent>
-              <CardFooter>
-                <Link href={tool.link} passHref>
-                  <Button className="w-full" >
-                    Learn More
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
+              <ProductCard
+                key={tool.id}
+                id={tool.id}
+                name={tool.name}
+                description={tool.description}
+                image={tool.image}
+                category={tool.category}
+                link={tool.link}
+              />
+            ))}
         </div>
       </main>
     </div>
