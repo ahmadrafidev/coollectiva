@@ -32,6 +32,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination"
 
 import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
@@ -41,6 +49,9 @@ export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState("name")
   const [selectedCategory, setSelectedCategory] = useState("All")
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 9;
 
   const filteredAndSortedTools = AITools
     .filter(tool => 
@@ -51,6 +62,13 @@ export function HomePage() {
       if (sortOrder === "name") return a.name.localeCompare(b.name);
       return 0;
     });
+
+  const totalPages = Math.ceil(filteredAndSortedTools.length / itemsPerPage);
+
+  const paginatedTools = filteredAndSortedTools.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -83,22 +101,17 @@ export function HomePage() {
                   <div className="space-y-4">
 
                     <div>
-                      <Label htmlFor="toolName">Tool Name</Label>
+                      <Label htmlFor="toolName">Name</Label>
                       <Input type="text" placeholder="AI Notetakers" className="w-full" />
                     </div>
 
                     <div>
-                      <Label htmlFor="toolURL">Tool URL</Label>
-                      <Input type="url" placeholder="URL" className="w-full" />
-                    </div>
+                      <Label htmlFor="toolDescription">Description</Label>
+                      <Input type="text" placeholder="Automatically captures and organizes meeting notes." className="w-full" />
+                    </div>  
 
                     <div>
-                      <Label htmlFor="toolDescription">Tool Description</Label>
-                      <Input type="text" placeholder="Automatically captures and organizes meeting notes with real-time transcription and summaries." className="w-full" />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="toolCategory">Tool Category</Label>
+                      <Label htmlFor="toolCategory">Category</Label>
                       <Select onValueChange={setSelectedCategory}>
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select a category" />
@@ -114,7 +127,12 @@ export function HomePage() {
                     </div>
 
                     <div>
-                      <Label htmlFor="toolSocials">Tool Socials</Label>
+                      <Label htmlFor="toolURL">URL</Label>
+                      <Input type="url" placeholder="URL" className="w-full" />
+                    </div>     
+
+                    <div>
+                      <Label htmlFor="toolSocials">Socials</Label>
                       <Input type="url" placeholder="X, Github, etc" className="w-full" />
                     </div>
                         
@@ -174,7 +192,7 @@ export function HomePage() {
         </Tabs>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredAndSortedTools.map((tool) => (
+          {paginatedTools.map((tool) => (
               <ProductCard
                 key={tool.id}
                 id={tool.id}
@@ -186,6 +204,27 @@ export function HomePage() {
               />
             ))}
         </div>
+
+        <div className="flex justify-center mt-8">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
+              </PaginationItem>
+              {[...Array(totalPages)].map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink href="#" onClick={() => setCurrentPage(index + 1)}>
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext href="#" onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+
       </main>
     </div>
   )
