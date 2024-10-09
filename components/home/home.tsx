@@ -44,8 +44,8 @@ import {
 import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
 import { ProductCard } from '../ProductCard/ProductCard';
-import DarkModeToggle from '../ui/DarkModeToggle';
-import { EmptyStatus } from '../ui/EmptyStatus';
+import DarkModeToggle from '../DarkMode/DarkModeToggle';
+import { EmptyStatus } from '../EmptyStatus/EmptyStatus';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
