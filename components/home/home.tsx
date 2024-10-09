@@ -45,6 +45,7 @@ import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
 import { ProductCard } from '../ProductCard/ProductCard';
 import DarkModeToggle from '../ui/DarkModeToggle';
+import { EmptyStatus } from '../ui/EmptyStatus';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -195,7 +196,7 @@ export function HomePage() {
           </TabsList>
         </Tabs>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {paginatedTools.length > 0 ? (
             paginatedTools.map((tool) => (
                 <ProductCard
@@ -210,8 +211,10 @@ export function HomePage() {
             ))
           )
             : (
-              <p>Empty</p>
-            )}
+              <div className="flex items-center justify-center w-full col-span-3">
+                <EmptyStatus type="no-category"/>
+              </div>
+              )}
         </div>
 
         {paginatedTools.length > 0 && (
