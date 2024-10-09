@@ -44,6 +44,7 @@ import {
 import { categories } from '../../constants/categories';
 import { AITools } from '../../constants/tools';
 import { ProductCard } from '../ProductCard/ProductCard';
+import DarkModeToggle from '../ui/DarkModeToggle';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -75,12 +76,14 @@ export function HomePage() {
 
       <nav>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+
           <Link passHref href="/">
             <div className="flex flex-row items-center">
               <Image alt="coollectiva icon" src="/images/cube.png" width={40} height={40}/>
               <h1 className="text-2xl font-bold tracking-tighter mx-1">Coollectiva</h1>
             </div>
           </Link>
+
           <div className="flex space-x-4 items-center">
             <Dialog>
               <DialogTrigger asChild>
@@ -147,6 +150,7 @@ export function HomePage() {
             <Button variant="ghost" size="icon">
               <User className="h-6 w-6" />
             </Button>
+            <DarkModeToggle />
           </div>
         </div>
       </nav>
@@ -209,7 +213,7 @@ export function HomePage() {
               <p>Empty</p>
             )}
         </div>
-        
+
         {paginatedTools.length > 0 && (
           <div className="flex justify-center mt-8">
             <Pagination>
