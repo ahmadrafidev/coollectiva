@@ -192,38 +192,45 @@ export function HomePage() {
         </Tabs>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedTools.map((tool) => (
-              <ProductCard
-                key={tool.id}
-                id={tool.id}
-                name={tool.name}
-                description={tool.description}
-                image={tool.image}
-                category={tool.category}
-                link={tool.link}
-              />
-            ))}
+          {paginatedTools.length > 0 ? (
+            paginatedTools.map((tool) => (
+                <ProductCard
+                  key={tool.id}
+                  id={tool.id}
+                  name={tool.name}
+                  description={tool.description}
+                  image={tool.image}
+                  category={tool.category}
+                  link={tool.link}
+                />
+            ))
+          )
+            : (
+              <p>Empty</p>
+            )}
         </div>
-
-        <div className="flex justify-center mt-8">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
-              </PaginationItem>
-              {[...Array(totalPages)].map((_, index) => (
-                <PaginationItem key={index}>
-                  <PaginationLink href="#" onClick={() => setCurrentPage(index + 1)}>
-                    {index + 1}
-                  </PaginationLink>
+        
+        {paginatedTools.length > 0 && (
+          <div className="flex justify-center mt-8">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious href="#" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
                 </PaginationItem>
-              ))}
-              <PaginationItem>
-                <PaginationNext href="#" onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
+                {[...Array(totalPages)].map((_, index) => (
+                  <PaginationItem key={index}>
+                    <PaginationLink href="#" onClick={() => setCurrentPage(index + 1)}>
+                      {index + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext href="#" onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        )}
 
       </main>
     </div>
