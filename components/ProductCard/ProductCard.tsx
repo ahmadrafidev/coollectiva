@@ -6,7 +6,6 @@ import {
   Card, 
   CardContent, 
   CardFooter, 
-  CardHeader, 
   CardTitle 
 } from "@/components/ui/card"
 
@@ -21,14 +20,12 @@ interface ProductProps {
 
 export function ProductCard({ id, name, description, image, category, link }: ProductProps) {
   return (
-    <Card key={id} className="flex flex-col">
-      <CardHeader>
-        <Image src={image} alt={name} height={20} width={20} className="w-full h-48 object-cover rounded-t-lg" />
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <CardTitle className="text-xl mb-2">{name}</CardTitle>
-        <p className="text-sm text-muted-foreground mt-1">{category}</p>
-        <p className="mt-2">{description}</p>
+    <Card key={id} className="grid grid-rows-3 gap-1">
+      <Image src={image} alt={name} height={30} width={30} className="w-full object-fill rounded-lg row-span-3" />
+      <CardContent className="flex-grow mt-2">
+        <CardTitle className="text-2xl">{name}</CardTitle>
+        <h2 className="text-sm text-muted-foreground">{category}</h2>
+        <p className="text-base mt-2">{description}</p>
       </CardContent>
       <CardFooter className="justify-end">
         <Link href={link} passHref>

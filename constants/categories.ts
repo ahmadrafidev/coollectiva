@@ -1,6 +1,6 @@
 export const categories = [
   "All", 
-  "Image Generation", 
+  "Image", 
   "Marketing & Sales", 
   "Music", 
   "Audio",
