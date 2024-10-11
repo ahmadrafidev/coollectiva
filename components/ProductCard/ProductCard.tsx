@@ -21,7 +21,14 @@ interface ProductProps {
 export function ProductCard({ id, name, description, image, category, link }: ProductProps) {
   return (
     <Card key={id} className="grid grid-rows-3 gap-1">
-      <Image src={image} alt={name} height={30} width={30} className="w-full object-fill rounded-lg row-span-3" />
+      <Image 
+        quality={100} 
+        src={image} 
+        alt={name} 
+        height={300} 
+        width={300} 
+        className="w-full object-cover rounded-lg row-span-3" 
+      />
       <CardContent className="flex-grow mt-2">
         <CardTitle className="text-2xl">{name}</CardTitle>
         <h2 className="text-sm text-muted-foreground">{category}</h2>
