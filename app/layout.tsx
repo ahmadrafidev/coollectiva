@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
+
+import { Toaster } from "@/components/ui/sonner"
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -15,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Coollectiva - The coolest new AI tools",
-  description: "A destination to find and explore cutting-edge AI tools that are transforming the future of technology",
+  title: "Coollectiva - The coolest new AI Product",
+  description: "A destination to find and explore cutting-edge AI product.",
 };
 
 export default function RootLayout({
@@ -32,6 +35,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

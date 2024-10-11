@@ -8,7 +8,6 @@ import { Search, Filter, User } from 'lucide-react'
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   DropdownMenu,
@@ -25,13 +24,6 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { 
   Pagination, 
   PaginationContent, 
@@ -46,12 +38,14 @@ import { AITools } from '../../constants/tools';
 import { ProductCard } from '../ProductCard/ProductCard';
 import DarkModeToggle from '../DarkMode/DarkModeToggle';
 import { EmptyStatus } from '../EmptyStatus/EmptyStatus';
+import { ProductForm } from '../ProductForm/ProductForm';
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState("name")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [currentPage, setCurrentPage] = useState(1);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const itemsPerPage = 9;
 
@@ -72,6 +66,11 @@ export function HomePage() {
     currentPage * itemsPerPage
   );
 
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
+
+
   return (
     <div className="min-h-screen bg-background">
 
@@ -86,7 +85,7 @@ export function HomePage() {
           </Link>
 
           <div className="flex space-x-4 items-center">
-            <Dialog>
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
                 <Button variant="default">
                   <p className="font-semibold text-base">
@@ -101,50 +100,12 @@ export function HomePage() {
                     Please fill out the form below to submit a new AI tool.
                   </DialogDescription>
                 </DialogHeader>
-                <form>
-                  <div className="space-y-4">
 
-                    <div>
-                      <Label htmlFor="toolName">Name</Label>
-                      <Input type="text" placeholder="AI Notetakers" className="w-full" />
-                    </div>
+                <ProductForm onSuccess={handleDialogClose} />
 
-                    <div>
-                      <Label htmlFor="toolDescription">Description</Label>
-                      <Input type="text" placeholder="Automatically captures and organizes meeting notes." className="w-full" />
-                    </div>  
-
-                    <div>
-                      <Label htmlFor="toolCategory">Category</Label>
-                      <Select onValueChange={setSelectedCategory}>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select a category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {categories.map((category) => (
-                            <SelectItem key={category} value={category}>
-                              {category}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="toolURL">URL</Label>
-                      <Input type="url" placeholder="URL" className="w-full" />
-                    </div>     
-
-                    <div>
-                      <Label htmlFor="toolSocials">Socials</Label>
-                      <Input type="url" placeholder="X, Github, etc" className="w-full" />
-                    </div>
-                        
-                  </div>
-                </form>
                 <DialogFooter>
-                  <Button variant="ghost">Cancel</Button>
-                  <Button type="submit">Submit</Button> 
+                  <Button variant="ghost" onClick={handleDialogClose}>Cancel</Button>
+                  <Button type="submit" form="product-form">Submit</Button> 
                 </DialogFooter>
               </DialogContent>
             </Dialog>
