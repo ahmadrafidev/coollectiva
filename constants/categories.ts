@@ -14,7 +14,7 @@ export const categories = [
   "Legal", 
   "Website Builder", 
   "Design", 
-  "AI Notetackers", 
+  "Education",
   "Finance", 
   "Travel", 
 ]
