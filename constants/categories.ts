@@ -17,4 +17,18 @@ export const categories = [
   "Education",
   "Finance", 
   "Travel", 
+  "Healthcare",    
+  "Human Resources",
+  "Cybersecurity",               
+  "Gaming",                 
+  "Robotics",
+  "Customer Support",
+  "Fitness",
+  "Retail",
+  "Fashion",
+  "AR & VR",
+  "Entertainment",
+  "Mental Health",
+  "Food & Beverage",
+  "Sports & Recreation" 
 ]
