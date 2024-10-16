@@ -45,13 +45,28 @@ export function ProductForm({ onSuccess }: { onSuccess: () => void }) {
     }
   });
 
-  const onSubmit = (data: ProductFormData) => {
-    console.log('Submitted data:', data);
-    methods.reset(); 
-    toast.success(`${data.name} submitted successfully!`);
-    onSuccess(); 
+  const onSubmit = async (data: ProductFormData) => {
+    try {
+      const response = await fetch('/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (response.ok) {
+        toast.success(`${data.name} submitted successfully!`);
+        methods.reset();
+        onSuccess();
+      } else {
+        toast.error('Failed to submit the product');
+      }
+    } catch (error) {
+      toast.error('An error occurred while submitting the product');
+    }
   };
-
+  
   return (
     <FormProvider {...methods}>
       <form id="product-form" onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
