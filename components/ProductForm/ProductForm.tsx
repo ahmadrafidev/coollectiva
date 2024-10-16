@@ -63,7 +63,7 @@ export function ProductForm({ onSuccess }: { onSuccess: () => void }) {
         toast.error('Failed to submit the product');
       }
     } catch (error) {
-      toast.error('An error occurred while submitting the product');
+      toast.error(`An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
   
