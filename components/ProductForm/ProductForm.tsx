@@ -28,6 +28,7 @@ const ProductSchema = z.object({
   category: z.string().min(1, 'Category is required'),
   url: z.string().url('Must be a valid URL'),
   social: z.string().url('Must be a valid Social URL'),
+  image: z.string().url('Must be a valid image URL'),
 });
 
 type ProductFormData = z.infer<typeof ProductSchema>;
@@ -136,7 +137,7 @@ export function ProductForm({ onSuccess }: { onSuccess: () => void }) {
           name="url"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="url">URL</FormLabel>
+              <FormLabel htmlFor="url">Link to the product</FormLabel>
               <FormControl>
                 <Input id="url" {...field} placeholder="https://coollectiva.vercel.app/"/>
               </FormControl>
@@ -145,20 +146,41 @@ export function ProductForm({ onSuccess }: { onSuccess: () => void }) {
           )}
         />
 
-        {/* Product Social */}
+        {/* Product Social URL */}
         <FormField
           control={methods.control}
           name="social"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="social">Social URL</FormLabel>
+              <FormLabel htmlFor="social">Socials</FormLabel>
               <FormControl>
-                <Input id="social" {...field} placeholder="https://coollectiva.vercel.app/"/>
+                <Input id="social" {...field} placeholder="https://x.com/"/>
               </FormControl>
               <FormMessage>{methods.formState.errors.social?.message}</FormMessage>
             </FormItem>
           )}
         />
+
+         {/* Product Image URL */}
+        <FormField
+          control={methods.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel htmlFor="image">Image URL</FormLabel>
+              <FormControl>
+                <Input
+                  id="image"
+                  {...field}
+                  placeholder="https://example.com/image.png"
+                />
+              </FormControl>
+              <FormMessage>{methods.formState.errors.image?.message}</FormMessage>
+            </FormItem>
+          )}
+        />
+
+
       </form>
     </FormProvider>
   );

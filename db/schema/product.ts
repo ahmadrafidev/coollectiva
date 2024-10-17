@@ -7,4 +7,5 @@ export const products = pgTable('products', {
   category: varchar('category', { length: 100 }).notNull(),
   url: varchar('url', { length: 255 }).notNull(),
   social: varchar('social', { length: 255 }).notNull(),
+  image: varchar('image', { length: 255 }).notNull(),
 });

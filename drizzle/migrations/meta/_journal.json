@@ -8,6 +8,13 @@
       "when": 1729087260090,
       "tag": "0000_giant_wasp",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729170150573,
+      "tag": "0001_cuddly_stingray",
+      "breakpoints": true
     }
   ]
 }

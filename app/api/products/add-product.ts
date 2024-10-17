@@ -8,6 +8,7 @@ export async function addProduct(data: {
   category: string;
   url: string;
   social: string;
+  image: string;
 }) {
   try {
     const result = await db.insert(products).values(data);
